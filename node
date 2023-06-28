@@ -3,4 +3,4 @@
 source "$(dirname -- "$0")/node.d/bootstrap";
 
 # shellcheck disable=SC2068
-app nvm $@;
+app node $@;

@@ -1,0 +1,20 @@
+#!/usr/bin/env bash
+
+projectDir="${projectDir:-$(dirname "$(dirname -- "${BASH_SOURCE[0]}")")}";
+
+# Import local environment variables
+set -o allexport
+for envFile in .env .env.local; do
+  # shellcheck disable=SC1090
+  [ -f "$projectDir/$envFile" ] && source "$projectDir/$envFile" 2>/dev/null;
+done
+set +o allexport
+
+# Ensure all mount points are created before docker requires them.
+for mountPoint in alias versions; do
+  [ ! -d "$NVM_HOME/$mountPoint" ] && mkdir -p "$NVM_HOME/$mountPoint";
+done
+
+# Ensure the temporary RC file exists.
+[ ! -d "$NVM_TMP" ] && mkdir -p "$NVM_TMP";
+[ ! -f "$NVM_TMP/.nvmrc" ] && touch "$NVM_TMP/.nvmrc";

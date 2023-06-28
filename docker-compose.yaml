@@ -53,8 +53,23 @@ services:
       args:
         UID: $UID
         GID: $GID
+        APP: nvm
     volumes:
       - "${NVM_HOME}/alias:/home/app/.nvm/alias"
       - "${NVM_HOME}/versions:/home/app/.nvm/versions"
       - "${NVM_TMP}/.nvmrc:/home/app/.nvm/.nvmrc"
       - "${PWD}:/app"
+
+  node:
+    extends:
+      service: nvm
+    build:
+      args:
+        APP: node
+
+  npm:
+    extends:
+      service: nvm
+    build:
+      args:
+        APP: npm

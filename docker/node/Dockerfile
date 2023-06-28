@@ -11,7 +11,7 @@ RUN set -eux \
 
 ENV NVM_DIR="${HOME}/.nvm"
 
-COPY --link entrypoint.sh /usr/local/bin/entrypoint
+COPY --link entrypoint /usr/local/bin/entrypoint
 
 RUN set -eux \
     && apt update -y \
@@ -28,4 +28,6 @@ WORKDIR /app
 VOLUME "${NVM_DIR}/alias"
 VOLUME "${NVM_DIR}/versions"
 
-ENTRYPOINT ["/usr/local/bin/entrypoint"]
+ARG APP=nvm
+ENV NODE_APP=$APP
+ENTRYPOINT ["entrypoint"]
