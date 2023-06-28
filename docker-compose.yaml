@@ -1,8 +1,14 @@
 version: "3.9"
 name: dev
 
+x-env-files: &env-files
+  env_file:
+    - .env
+    - .env.local
+
 services:
   php:
+    <<: *env-files
     user: "${UID}:${GID}"
     build:
       context: docker/php
@@ -11,9 +17,6 @@ services:
         GID: $GID
         PHP_VERSION: 8.2
         PHP_EXTENSIONS: apcu intl opcache zip pdo_mysql xdebug
-    env_file:
-      - .env
-      - .env.local
     environment:
       - "HOME=${PHP_HOME}"
     volumes:
@@ -41,3 +44,17 @@ services:
         GIT: 1
         PHP_EXTENSIONS: apcu intl opcache zip pdo_mysql
     entrypoint: symfony
+
+  nvm:
+    <<: *env-files
+    user: "${UID}:${GID}"
+    build:
+      context: docker/node
+      args:
+        UID: $UID
+        GID: $GID
+    volumes:
+      - "${NVM_HOME}/alias:/home/app/.nvm/alias"
+      - "${NVM_HOME}/versions:/home/app/.nvm/versions"
+      - "${NVM_TMP}/.nvmrc:/home/app/.nvm/.nvmrc"
+      - "${PWD}:/app"

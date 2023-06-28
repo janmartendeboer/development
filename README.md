@@ -7,6 +7,7 @@ This project provides the following applications:
 - [`php`](#php)
 - [`composer`](#composer)
 - [`symfony`](#symfony-cli)
+- [`nvm`](#nvm)
 
 Applications are built as needed, so unused software will not incur a storage or resource penalty on your system.
 
@@ -172,3 +173,14 @@ See also: [PHP build args](#php-build-args)
 E.g.: `symfony version`
 
 See also: [PHP build args](#php-build-args)
+
+### NVM
+
+E.g.: `nvm --version`
+
+### NVM build args
+
+| ARG   | Default | Description                                                                                                                         |
+|:------|:--------|:------------------------------------------------------------------------------------------------------------------------------------|
+| `UID` | `$UID`  | Set to the UID of the local user needed for file permissions. Make sure it matches the `$UID` environment variable in `.env.local`. |
+| `GID` | `$GID`  | Set to the GID of the local user needed for file permissions. Make sure it matches the `$GID` environment variable in `.env.local`. |
