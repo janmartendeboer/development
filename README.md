@@ -91,6 +91,51 @@ The following environment variables are available:
 | `UID`               | `${UID:-1000}`          | The user ID to use when running applications. Make sure to run `docker compose build` when changing its value.                            |
 | `GID`               | `${GID:-1000}`          | The group ID to use when running applications. Make sure to run `docker compose build` when changing its value.                           |
 
+## Connecting to a database server
+
+Although this is covered under [Docker Compose networking](https://docs.docker.com/compose/networking/), the following
+describes how to ensure the global PHP application could access a containerized service in another Docker Compose project.
+
+In your specific project, ensure the service has an exposed port to connect to. The following shows how to expose a
+database server from inside your project:
+
+```yaml
+# <project>/docker-compose.override.yaml
+services:
+  db:
+    ports:
+      - 3306:3306
+```
+
+While inside your project, the database can be accessed using the `db` hostname, this same hostname is not available to
+the global `php` application. However, once the port is exposed, this can be solved with an override that registers the
+`db` host to the `php` and `composer` applications:
+
+```yaml
+# <development>/docker-compose.override.yaml
+x-extra-hosts: &extra-hosts
+  extra_hosts:
+    db: 172.17.0.1 # The IPv4 address of the local Docker network interface
+
+services:
+  php:
+    <<: *extra-hosts
+  composer:
+    <<: *extra-hosts
+```
+
+To find the address to the local Docker interface, use the following:
+
+```shell
+ip a show dev docker0 | grep 'inet ' | awk '{ split($2, a, "/"); print a[1] }'
+```
+
+This returns something like `172.17.0.1`.
+
+> **N.B.:** One could also accomplish this by updating the `/etc/hosts` file on the host system, as Docker inherits from
+> those hosts. However, doing so produces a valid DNS record for all software on the host system, which is
+> discouraged to prevent conflicts and unexpected behavior.
+
 ## Applications
 
 The following applications are available after installing this project.
