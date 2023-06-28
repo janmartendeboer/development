@@ -102,8 +102,8 @@ PHP version and extensions can be configured through `services.php.build.args`.
 | `COMPOSER_VERSION` | `2`                                           | A Composer version number, accepted as [tag for the Composer Docker image](https://hub.docker.com/_/composer/tags).                                          |                                                                               |
 | `SYMFONY`          | `0`                                           | Set to `1` to install the [Symfony CLI](https://github.com/symfony-cli/symfony-cli) application.                                                             |
 | `GIT`              | `0`                                           | Set to `1` to install the [GIT](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git) application.                                                  |
-| `UID`              | `1000`                                        | Set to the UID of the local user needed for file permissions. Make sure it matches the `$UID` environment variable in `.env.local`.                          |
-| `GID`              | `1000`                                        | Set to the GID of the local user needed for file permissions. Make sure it matches the `$GID` environment variable in `.env.local`.                          |
+| `UID`              | `$UID`                                        | Set to the UID of the local user needed for file permissions. Make sure it matches the `$UID` environment variable in `.env.local`.                          |
+| `GID`              | `$GID`                                        | Set to the GID of the local user needed for file permissions. Make sure it matches the `$GID` environment variable in `.env.local`.                          |
 
 ### Composer
 
