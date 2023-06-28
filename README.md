@@ -8,6 +8,8 @@ This project provides the following applications:
 - [`composer`](#composer)
 - [`symfony`](#symfony-cli)
 
+Applications are built as needed, so unused software will not incur a storage or resource penalty on your system.
+
 ## Prerequisites
 
 - [Docker Engine](https://docs.docker.com/engine/install/) or [Docker Desktop](https://www.docker.com/products/docker-desktop/)
