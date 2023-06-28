@@ -14,6 +14,11 @@ git clone git@github.com:janmartendeboer/development.git "${HOME}/bin"
 ```
 
 Assuming a modern *nix OS, the `${HOME}/bin` location is automatically added to the `$PATH` variable.
+If this is not the case for you, manually configure it in your shell profile:
+
+```shell
+export PATH="$HOME/bin:$PATH"
+```
 
 ## Available applications
 
