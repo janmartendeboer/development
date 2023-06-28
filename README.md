@@ -2,6 +2,12 @@
 
 Local development applications using Docker Compose.
 
+This project provides the following applications:
+
+- [`php`](#php)
+- [`composer`](#composer)
+- [`symfony`](#symfony-cli)
+
 ## Prerequisites
 
 - [Docker Engine](https://docs.docker.com/engine/install/) or [Docker Desktop](https://www.docker.com/products/docker-desktop/)
