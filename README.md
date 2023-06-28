@@ -7,6 +7,9 @@ This project provides the following applications:
 - [`php`](#php)
 - [`composer`](#composer)
 - [`symfony`](#symfony-cli)
+- [`nvm`](#nvm)
+- [`node`](#nodejs)
+- [`npm`](#npm)
 
 Applications are built as needed, so unused software will not incur a storage or resource penalty on your system.
 
@@ -85,9 +88,12 @@ The following environment variables are available:
 
 | ENV                 | Default                 | Description                                                                                                                               |
 |:--------------------|:------------------------|:------------------------------------------------------------------------------------------------------------------------------------------|
+| `TMP`               | `/tmp`                  | The host system temporary directory.                                                                                                      |
 | `PHP_HOME`          | `/home/www-data`        | The internal home directory for services based on the PHP image. It gets translated to `$HOME` inside those containers.                   |
 | `PHP_COMPOSER_HOME` | `${PHP_HOME}/.composer` | The internal home directory for Composer files, used inside PHP services. It gets translated to `$COMPOSER_HOME` inside those containers. |
 | `COMPOSER_HOME`     | `${HOME}/.composer`     | The local mount location for Composer files on the host system. This gets mounted to `${PHP_COMPOSER_HOME}` inside PHP services.          |
+| `NVM_HOME`          | `${HOME}/.nvm`          | The local mount location for NVM files on the host system. This gets mounted to `/home/app/.nvm` inside the Node services.                |
+| `NVM_TMP`           | `${TMP}/.nvm`           | THe local mount location for temporary NVM files. This is used to persist the current Node version between commands.                      |
 | `UID`               | `${UID:-1000}`          | The user ID to use when running applications. Make sure to run `docker compose build` when changing its value.                            |
 | `GID`               | `${GID:-1000}`          | The group ID to use when running applications. Make sure to run `docker compose build` when changing its value.                           |
 
@@ -146,7 +152,7 @@ E.g.: `php -v`
 
 PHP version and extensions can be configured through `services.php.build.args`.
 
-### PHP build args
+#### PHP build args
 
 | ARG                | Default                                       | Description                                                                                                                                                  |
 |:-------------------|:----------------------------------------------|:-------------------------------------------------------------------------------------------------------------------------------------------------------------|
@@ -172,3 +178,27 @@ See also: [PHP build args](#php-build-args)
 E.g.: `symfony version`
 
 See also: [PHP build args](#php-build-args)
+
+### NVM
+
+E.g.: `nvm --version`
+
+#### NVM build args
+
+| ARG   | Default | Description                                                                                                                         |
+|:------|:--------|:------------------------------------------------------------------------------------------------------------------------------------|
+| `APP` | `nvm`   | Set the entrypoint application to invoke when running this service.                                                                 |
+| `UID` | `$UID`  | Set to the UID of the local user needed for file permissions. Make sure it matches the `$UID` environment variable in `.env.local`. |
+| `GID` | `$GID`  | Set to the GID of the local user needed for file permissions. Make sure it matches the `$GID` environment variable in `.env.local`. |
+
+### NodeJS
+
+E.g.: `node --version`
+
+See also: [NVM build args](#nvm-build-args)
+
+### NPM
+
+E.g.: `npm --version`
+
+See also: [NVM build args](#nvm-build-args)
