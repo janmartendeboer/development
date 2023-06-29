@@ -29,6 +29,8 @@ jobs:
     name: Test executable versions
     needs: [build]
     runs-on: ubuntu-latest
+    env:
+      DEBUG: 1
     strategy:
       matrix:
         include:

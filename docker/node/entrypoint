@@ -2,6 +2,8 @@
 
 set -e;
 
+[[ ${DEBUG:-0} -eq 1 ]] && set -x;
+
 source "${NVM_DIR}/nvm.sh";
 
 # Ensure locally configured versions are honored.

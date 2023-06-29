@@ -55,6 +55,7 @@ services:
         UID: $UID
         GID: $GID
         APP: nvm
+        DEBUG: "${DEBUG:-0}"
     volumes:
       - "${NVM_HOME}/alias:/home/app/.nvm/alias"
       - "${NVM_HOME}/versions:/home/app/.nvm/versions"
