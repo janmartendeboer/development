@@ -29,21 +29,24 @@ jobs:
     name: Test executable versions
     needs: [build]
     runs-on: ubuntu-latest
+    env:
+      DEBUG: 1
     strategy:
+      fail-fast: false
       matrix:
         include:
           - name: PHP
-            script: php -v
+            script: php --version
           - name: Composer
-            script: composer -v
+            script: composer --version
           - name: Symfony CLI
             script: symfony version
           - name: NVM
             script: nvm --version
           - name: NodeJS
-            script: nvm install node && node --version
+            script: node --version
           - name: NPM
-            script: nvm install --latest-npm && npm --version
+            script: npm --version
     steps:
       - name: Checkout
         uses: actions/checkout@v3
