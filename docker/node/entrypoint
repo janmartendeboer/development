@@ -5,7 +5,8 @@ set -e;
 source "${NVM_DIR}/nvm.sh";
 
 # Ensure locally configured versions are honored.
-[ -f "${NVM_DIR}/.nvmrc" ] && nvm use "$(cat "${NVM_DIR}/.nvmrc")" &> /dev/null;
+[ -f "${NVM_DIR}/.nvmrc" ] && [[ "$(cat "${NVM_DIR}/.nvmrc")" != "" ]] \
+  && nvm use "$(cat "${NVM_DIR}/.nvmrc")" &> /dev/null;
 
 # shellcheck disable=SC2068
 $NODE_APP $@;
