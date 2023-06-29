@@ -36,9 +36,9 @@ jobs:
       matrix:
         include:
           - name: PHP
-            script: php -v
+            script: php --version
           - name: Composer
-            script: composer -v
+            script: composer --version
           - name: Symfony CLI
             script: symfony version
           - name: NVM

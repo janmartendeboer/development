@@ -150,7 +150,7 @@ The following applications are available after installing this project.
 
 ### PHP
 
-E.g.: `php -v`
+E.g.: `php --version`
 
 PHP version and extensions can be configured through `services.php.build.args`.
 
@@ -170,7 +170,7 @@ PHP version and extensions can be configured through `services.php.build.args`.
 
 ### Composer
 
-E.q.: `composer -v`
+E.q.: `composer --version`
 
 Composer version can be configured through `services.composer.build.args`.
 Composer home can be influenced by updating the [`PHP_COMPOSER_HOME` environment variable](#environment-variables).
