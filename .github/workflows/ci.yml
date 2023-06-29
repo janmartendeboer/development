@@ -31,6 +31,7 @@ jobs:
     runs-on: ubuntu-latest
     env:
       DEBUG: 1
+      TTY: 0
     strategy:
       fail-fast: false
       matrix:
@@ -44,8 +45,7 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v3
+      - name: Build application
+        run: docker compose build "$(basename "${{ matrix.script }}")"
       - name: Test version
-        env:
-          # Disable TTY in CI context
-          TTY: 0
         run: export PATH="$PWD:$PATH" && ${{ matrix.script }}
