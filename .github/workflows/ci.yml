@@ -25,16 +25,6 @@ jobs:
       - name: Docker Build
         run: docker build ${{ matrix.context }}
 
-  build:
-    name: Build
-    needs: [build-dependencies]
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v3
-      - name: Docker Compose Build
-        run: touch .env.local && docker compose build
-
   run:
     name: Run
     needs: [build-dependencies]
