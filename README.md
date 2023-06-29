@@ -154,15 +154,17 @@ PHP version and extensions can be configured through `services.php.build.args`.
 
 #### PHP build args
 
-| ARG                | Default                                       | Description                                                                                                                                                  |
-|:-------------------|:----------------------------------------------|:-------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| `PHP_VERSION`      | `8.2`                                         | A PHP version number, accepted as [tag for the PHP Docker image](https://hub.docker.com/_/php/tags). Versions are automatically suffixed with `-cli-alpine`. |
-| `PHP_EXTENSIONS`   | See: `services.php.build.args.PHP_EXTENSIONS` | A space delimited list of [PHP extensions](https://github.com/mlocati/docker-php-extension-installer#supported-php-extensions) to install and enable.        |
-| `COMPOSER_VERSION` | `2`                                           | A Composer version number, accepted as [tag for the Composer Docker image](https://hub.docker.com/_/composer/tags).                                          |                                                                               |
-| `SYMFONY`          | `0`                                           | Set to `1` to install the [Symfony CLI](https://github.com/symfony-cli/symfony-cli) application.                                                             |
-| `GIT`              | `0`                                           | Set to `1` to install the [GIT](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git) application.                                                  |
-| `UID`              | `$UID`                                        | Set to the UID of the local user needed for file permissions. Make sure it matches the `$UID` environment variable in `.env.local`.                          |
-| `GID`              | `$GID`                                        | Set to the GID of the local user needed for file permissions. Make sure it matches the `$GID` environment variable in `.env.local`.                          |
+| ARG                | Default               | Description                                                                                                                                                                                                                 |
+|:-------------------|:----------------------|:----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| `PHP_VERSION`      | `8.2`                 | A PHP version number, accepted as [tag for the PHP Docker image](https://hub.docker.com/_/php/tags). Versions are automatically suffixed with `-cli-alpine`.                                                                |
+| `PHP_INI`          | `php.ini-development` | Relative to `$PHP_INI_DIR` from the [PHP Docker image](https://hub.docker.com/_/php). This determines the file that gets moved to `$PHP_INI_DIR/php.ini`. Suggested values are: `php.ini-development`, `php.ini-production` |
+| `PHP_INIS`         | N/A                   | A space delimited list of INI files as found in `docker/php/conf.d/*.ini` and [`docker/php/conf.override.d/*.ini`](docker/php/conf.override.d/README.md).                                                                   |
+| `PHP_EXTENSIONS`   | N/A                   | A space delimited list of [PHP extensions](https://github.com/mlocati/docker-php-extension-installer#supported-php-extensions) to install and enable.                                                                       |
+| `COMPOSER_VERSION` | `2`                   | A Composer version number, accepted as [tag for the Composer Docker image](https://hub.docker.com/_/composer/tags).                                                                                                         |
+| `GIT`              | `0`                   | Set to `1` to install the [GIT](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git) application.                                                                                                                 |
+| `SYMFONY`          | `0`                   | Set to `1` to install the [Symfony CLI](https://github.com/symfony-cli/symfony-cli) application.                                                                                                                            |
+| `UID`              | `$UID`                | Set to the UID of the local user needed for file permissions. Make sure it matches the `$UID` environment variable in `.env.local`.                                                                                         |
+| `GID`              | `$GID`                | Set to the GID of the local user needed for file permissions. Make sure it matches the `$GID` environment variable in `.env.local`.                                                                                         |
 
 ### Composer
 

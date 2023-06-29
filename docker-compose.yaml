@@ -43,6 +43,7 @@ services:
         SYMFONY: 1
         GIT: 1
         PHP_EXTENSIONS: apcu intl opcache zip pdo_mysql
+        PHP_INIS: symfony.ini symfony-recommended.ini
     entrypoint: symfony
 
   nvm:
