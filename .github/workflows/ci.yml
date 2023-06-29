@@ -39,6 +39,7 @@ jobs:
     name: Run
     needs: [build]
     runs-on: ubuntu-latest
+    container: ubuntu:rolling
     env:
       DEBUG: 1
       TTY: 0
