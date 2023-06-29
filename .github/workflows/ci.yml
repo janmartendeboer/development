@@ -44,4 +44,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v3
       - name: ${{ matrix.name }}
+        env:
+          # Disable TTY in CI context
+          TTY: 0
         run: export PATH="$PWD:$PATH" && ${{ matrix.script }}
