@@ -11,6 +11,7 @@ concurrency:
 
 env:
   DOCKER_BUILDKIT: 1
+  TTY: 0
 
 jobs:
   build-dependencies:
@@ -32,7 +33,6 @@ jobs:
     container: ubuntu:rolling
     env:
       DEBUG: 1
-      TTY: 0
     strategy:
       matrix:
         script:
