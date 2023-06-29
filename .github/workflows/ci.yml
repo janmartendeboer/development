@@ -13,8 +13,8 @@ env:
   DOCKER_BUILDKIT: 1
 
 jobs:
-  build:
-    name: Build dependencies
+  build-dependencies:
+    name: Build dependency
     runs-on: ubuntu-latest
     strategy:
       matrix:
@@ -25,33 +25,38 @@ jobs:
       - name: Docker Build
         run: docker build ${{ matrix.context }}
 
-  run:
-    name: Test executable versions
-    needs: [build]
+  build:
+    name: Build
+    needs: [build-dependencies]
     runs-on: ubuntu-latest
-    env:
-      DEBUG: 1
-    strategy:
-      fail-fast: false
-      matrix:
-        include:
-          - name: PHP
-            script: php --version
-          - name: Composer
-            script: composer --version
-          - name: Symfony CLI
-            script: symfony version
-          - name: NVM
-            script: nvm --version
-          - name: NodeJS
-            script: node --version
-          - name: NPM
-            script: npm --version
     steps:
       - name: Checkout
         uses: actions/checkout@v3
-      - name: Test ${{ matrix.name }} version
-        env:
-          # Disable TTY in CI context
-          TTY: 0
+      - name: Docker Compose Build
+        run: touch .env.local && docker compose build
+
+  run:
+    name: Run
+    needs: [build-dependencies]
+    runs-on: ubuntu-latest
+    container: ubuntu:rolling
+    env:
+      DEBUG: 1
+      TTY: 0
+    strategy:
+      fail-fast: false
+      matrix:
+        script:
+          - php --version
+          - composer --version
+          - symfony version
+          - nvm --version
+          - node --version
+          - npm --version
+    steps:
+      - name: Install Docker Engine
+        run: apt update && apt install -y curl && curl -fsSL https://get.docker.com -o- | sh
+      - name: Checkout
+        uses: actions/checkout@v3
+      - name: Test version
         run: export PATH="$PWD:$PATH" && ${{ matrix.script }}
