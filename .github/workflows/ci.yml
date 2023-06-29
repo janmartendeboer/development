@@ -46,6 +46,6 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v3
       - name: Build application
-        run: touch .env.local && docker compose build "$(basename "${{ matrix.script }}")"
+        run: touch .env.local && docker compose build "$(echo "${{ matrix.script }}" | cut -d' ' -f1)"
       - name: Test version
         run: export PATH="$PWD:$PATH" && ${{ matrix.script }}
