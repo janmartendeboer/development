@@ -1,4 +1,7 @@
 #!/usr/bin/env bash
+
+set -e;
+
 source "${NVM_DIR}/nvm.sh";
 
 # Ensure locally configured versions are honored.
