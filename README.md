@@ -1,5 +1,7 @@
 # Development applications
 
+[![Continuous Integration](https://github.com/janmartendeboer/development/actions/workflows/ci.yml/badge.svg)](https://github.com/janmartendeboer/development/actions/workflows/ci.yml)
+
 Local development applications using Docker Compose.
 
 This project provides the following applications:
