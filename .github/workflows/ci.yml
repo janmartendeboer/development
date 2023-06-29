@@ -34,23 +34,17 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        include:
-          - name: PHP
-            script: php --version
-          - name: Composer
-            script: composer --version
-          - name: Symfony CLI
-            script: symfony version
-          - name: NVM
-            script: nvm --version
-          - name: NodeJS
-            script: node --version
-          - name: NPM
-            script: npm --version
+        script:
+          - php --version
+          - composer --version
+          - symfony version
+          - nvm --version
+          - node --version
+          - npm --version
     steps:
       - name: Checkout
         uses: actions/checkout@v3
-      - name: Test ${{ matrix.name }} version
+      - name: Test version
         env:
           # Disable TTY in CI context
           TTY: 0
