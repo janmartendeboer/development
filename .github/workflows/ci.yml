@@ -13,8 +13,11 @@ jobs:
   build:
     name: Build dependencies
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        context: [docker/php, docker/node]
     steps:
       - name: Checkout
         uses: actions/checkout@v3
-      - name: Docker Compose Build
-        run: touch .env.local && docker compose build
+      - name: Docker Build
+        run: docker build ${{ matrix.context }}
