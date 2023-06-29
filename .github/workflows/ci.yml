@@ -57,7 +57,7 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v3
-      - name: Test PHP version override
+      - name: Configure override
         run: |
           set -eux;
           <<- YAML > docker-compose.override.yaml
@@ -68,4 +68,8 @@ jobs:
                   PHP_VERSION: 8.0.0
           YAML
           cat docker-compose.override.yaml
+      - name: Test PHP version override
+        run: |
+          set -eux;
+          export PATH="$PWD:$PATH"
           [[ "$(php --version)" == "PHP 8.0.0"* ]] || exit 42;
