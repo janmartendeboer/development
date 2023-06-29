@@ -37,7 +37,7 @@ jobs:
 
   run:
     name: Run
-    needs: [build]
+    needs: [build-dependencies]
     runs-on: ubuntu-latest
     container: ubuntu:rolling
     env:
