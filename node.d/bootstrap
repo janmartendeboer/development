@@ -22,5 +22,5 @@ done
 NODE_APP="${0##*/}";
 
 # Ensure there is at least one version of Node installed.
-[[ "$NODE_APP" == "nvm" ]] || [[ "$(app "$NODE_APP" --version)" =~ ^v.* ]] || \
+[[ "$NODE_APP" == "nvm" ]] || app "$NODE_APP" --version &> /dev/null || \
   docker compose --project-directory "$projectDir" run -u "${UID}:${GID}" --rm -e NODE_APP=nvm "$NODE_APP" install node;
