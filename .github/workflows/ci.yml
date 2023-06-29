@@ -39,11 +39,15 @@ jobs:
           - name: Symfony CLI
             script: symfony version
           - name: NVM
-            script: nvm -v
+            script: nvm --version
+          - name: NodeJS
+            script: nvm install node && node --version
+          - name: NPM
+            script: nvm install --latest-npm && npm --version
     steps:
       - name: Checkout
         uses: actions/checkout@v3
-      - name: ${{ matrix.name }}
+      - name: Test ${{ matrix.name }} version
         env:
           # Disable TTY in CI context
           TTY: 0
