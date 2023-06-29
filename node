@@ -1,8 +1,8 @@
 #!/usr/bin/env bash
 
-set -e;
-
 source "$(dirname -- "${BASH_SOURCE[0]}")/node.d/bootstrap";
+
+set -e;
 
 # shellcheck disable=SC2068
 app node $@;
