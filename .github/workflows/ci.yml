@@ -72,4 +72,5 @@ jobs:
         run: |
           set -eux;
           export PATH="$PWD:$PATH"
+          php
           [[ "$(php --version)" == "PHP 8.0.0"* ]] || exit 42;
