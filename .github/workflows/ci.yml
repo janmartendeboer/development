@@ -54,6 +54,8 @@ jobs:
           - node --version
           - npm --version
     steps:
+      - name: Install Docker Engine
+        run: curl -fsSL https://get.docker.com -o- | sh
       - name: Checkout
         uses: actions/checkout@v3
       - name: Test version
