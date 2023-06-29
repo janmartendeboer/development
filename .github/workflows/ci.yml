@@ -60,7 +60,7 @@ jobs:
       - name: Configure override
         run: |
           set -eux;
-          <<- YAML > docker-compose.override.yaml
+          cat <<YAML > docker-compose.override.yaml
           services:
             php:
               build:
