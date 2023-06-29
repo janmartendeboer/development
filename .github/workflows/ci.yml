@@ -34,7 +34,6 @@ jobs:
       DEBUG: 1
       TTY: 0
     strategy:
-      fail-fast: false
       matrix:
         script:
           - php --version
