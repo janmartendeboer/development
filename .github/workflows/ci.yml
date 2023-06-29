@@ -26,7 +26,7 @@ jobs:
         run: docker build ${{ matrix.context }}
 
   run:
-    name: Test executable versions
+    name: Run
     needs: [build]
     runs-on: ubuntu-latest
     env:
