@@ -49,3 +49,22 @@ jobs:
         uses: actions/checkout@v3
       - name: Test version
         run: export PATH="$PWD:$PATH" && ${{ matrix.script }}
+
+  override:
+    name: Override
+    needs: [run]
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+      - name: Test PHP version override
+        run: |
+          <<- YAML > docker-compose.override.yaml
+          services:
+            php:
+              build:
+                args:
+                  PHP_VERSION: 8.0.0
+          YAML
+          
+          [[ "$(php --version)" == "PHP 8.0.0"* ]] || exit 1;
