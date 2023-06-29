@@ -1,6 +1,9 @@
 #!/usr/bin/env bash
 
 set -e;
+
+[[ ${DEBUG:-0} -eq 1 ]] && set -x;
+
 projectDir="$(dirname -- "${BASH_SOURCE[0]}")";
 
 if [ ! -f "$projectDir/.env.local" ]; then touch "$projectDir/.env.local"; fi
