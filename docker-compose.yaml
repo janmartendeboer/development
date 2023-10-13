@@ -35,6 +35,13 @@ services:
     volumes:
       - "${COMPOSER_HOME}:${PHP_COMPOSER_HOME}"
 
+  composer2:
+    extends:
+      service: composer
+    build:
+      args:
+        COMPOSER_VERSION: 2
+
   symfony:
     extends:
       service: composer
